@@ -5,8 +5,8 @@ import { ObservableProperty } from "./observable-property-decorator";
 export class HelloWorldModel extends Observable {
     public propeertyDatabase: Couchbase;
     
-    public locations = { "type": "string", "Names": "Array<string>" };
-    public profile = { "type": "string", "UUID": "string", "Name": "string", "HRA": "string", "defaultLocation": "string" };
+    public locations = { "type": "string", "Names": ["Array<string>"] };
+    // public profile = { "type": "string", "UUID": "string", "Name": "string", "HRA": "string", "defaultLocation": "string" };
 
     @ObservableProperty() location = "default";
     @ObservableProperty() scanLocations = ["One","Two","Three"];
@@ -25,6 +25,7 @@ export class HelloWorldModel extends Observable {
         this.locations = this.propeertyDatabase.getDocument("Locations");
         console.log("CB: locations: ");
         console.dir(this.locations);
+        console.log("Type of: " + typeof(this.locations.Names));
 
         // this.dbInit();
     }
